@@ -1,8 +1,6 @@
 package com.pluralsight;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class App {
     public static void main(String[] args) {
@@ -11,7 +9,10 @@ public class App {
         int counter = 0;  // Counter to track how many employees are added
 
         // Read employee data from the CSV file
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("employees.csv"))) {
+        try (
+                BufferedReader bufferedReader = new BufferedReader(new FileReader("employees.csv"));
+                BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("report.csv", true));
+        ) {
 
             String line;
 
@@ -32,6 +33,9 @@ public class App {
                 // Create an Employee object and add it to the array
                 Employee employee = new Employee(id, name, hours, rate);
                 employees[counter++] = employee;
+
+                String report = parts[0]+"|"+name+"|"+employee.getGrossPay()+"\n";
+                bufferedWriter.write(report);
             }
 
         } catch (IOException e) {
