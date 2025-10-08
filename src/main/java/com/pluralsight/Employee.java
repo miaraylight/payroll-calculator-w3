@@ -6,6 +6,7 @@ public class Employee {
     private double hoursWorked;
     private double payRate;
 
+    public Employee(){}
 
     public Employee(int employeeId, String name, double hoursWorked, double payRate) {
         this.employeeId = employeeId;
@@ -16,6 +17,10 @@ public class Employee {
 
     public int getEmployeeId() {
         return employeeId;
+    }
+
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
 
     public String getName() {
@@ -46,6 +51,14 @@ public class Employee {
     public double getGrossPay(){
         double grossPay = this.hoursWorked * this.payRate;
         return grossPay;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee ID: " + employeeId +
+                ", name: " + name +
+                ", hours: " + hoursWorked +
+                ", rate: " + payRate;
     }
 
 }
