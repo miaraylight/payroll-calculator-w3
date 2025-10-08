@@ -1,17 +1,25 @@
 package com.pluralsight;
 
 import java.io.*;
+import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
         // Create an array to hold up to 8 employees
         Employee[] employees = new Employee[8];
         int counter = 0;  // Counter to track how many employees are added
 
+        System.out.println("Enter the name of the file to process:");
+        String file = scanner.nextLine().trim();
+
+        System.out.println("Enter the name of the payroll file to create:");
+        String payroll = scanner.nextLine().trim();
+
         // Read employee data from the CSV file
         try (
-                BufferedReader bufferedReader = new BufferedReader(new FileReader("employees.csv"));
-                BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("report.csv", true));
+                BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+                BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(payroll, true));
         ) {
 
             String line;
